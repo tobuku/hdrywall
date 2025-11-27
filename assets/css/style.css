@@ -1,0 +1,88 @@
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f4f4f4;
+  --text: #222222;
+  --accent: #0057b8;
+  --accent-light: #e6f2ff;
+  --radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--accent);
+  color: white;
+  padding: 1rem 0;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hero {
+  padding: 4rem 0;
+  background: var(--accent-light);
+  text-align: center;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.page-section {
+  padding: 2.5rem 0;
+}
+
+.container {
+  width: 90 percent;
+  max-width: 900px;
+  margin: auto;
+}
+
+.service-list li {
+  margin-bottom: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100 percent;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+button.btn {
+  border: none;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  background: var(--bg-alt);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
