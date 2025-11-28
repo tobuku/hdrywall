@@ -2,9 +2,9 @@
   --bg: #f3f4f6;
   --bg-alt: #ffffff;
   --card-bg: #ffffff;
-  --text-main: #111827;      /* main text: near black */
-  --text-muted: #6b7280;     /* softer gray for secondary text */
-  --accent: #2563eb;         /* blue accent */
+  --text-main: #111111;      /* main text: very dark */
+  --text-muted: #4b5563;     /* softer gray for secondary text */
+  --accent: #2563eb;
   --accent-soft: #dbeafe;
   --border-subtle: #e5e7eb;
   --danger-soft: #fee2e2;
@@ -98,7 +98,7 @@ nav a:focus-visible {
 
 .hero p {
   margin: 0 0 1.5rem;
-  color: var(--text-muted);
+  color: var(--text-main);   /* dark body text */
   max-width: 34rem;
 }
 
@@ -183,7 +183,7 @@ nav a:focus-visible {
 }
 
 .page-section p {
-  color: var(--text-muted);
+  color: var(--text-main);   /* dark body text in sections */
 }
 
 /* Services list */
