@@ -89,36 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Lightbox for gallery
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImage = document.getElementById("lightbox-image");
-  const lightboxClose = document.querySelector(".lightbox-close");
-  const galleryItems = Array.from(document.querySelectorAll(".gallery-item"));
-
-  function openLightbox(src) {
-    if (!lightbox || !lightboxImage) return;
-    lightboxImage.src = src;
-    lightbox.classList.add("open");
-  }
-
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.remove("open");
-    if (lightboxImage) lightboxImage.src = "";
-  }
-
+  
+  
   if (galleryItems.length) {
-    galleryItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        const full = item.getAttribute("data-full");
-        if (full) openLightbox(full);
-      });
-    });
+        });
   }
 
-  if (lightboxClose) {
-    lightboxClose.addEventListener("click", closeLightbox);
-  }
+    }
 
   if (lightbox) {
     lightbox.addEventListener("click", (e) => {
@@ -128,12 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeLightbox();
-    }
   });
-});
 
 
   // ------------------------------
@@ -430,7 +402,7 @@ if (window.ScrollTrigger) {
 // Gallery hover inertia (free alternative to InertiaPlugin)
 // Tracks pointer velocity over the gallery and "kicks" images on hover, then springs back.
 // Force gallery images to full color (prevents haze)
-gsap.set("#gallery .gallery-item img", { opacity: 1, filter: "none" });
+gsap.set("#gallery .gallery-carousel .box img", { opacity: 1, filter: "none" });
 
 (function galleryHoverInertia() {
   const gallery = document.querySelector("#gallery");
@@ -447,7 +419,7 @@ gsap.set("#gallery .gallery-item img", { opacity: 1, filter: "none" });
 
   gallery.addEventListener("pointermove", update, { passive: true });
 
-  const imgs = gsap.utils.toArray("#gallery .gallery-item img");
+  const imgs = gsap.utils.toArray("#gallery .gallery-carousel .box img");
   imgs.forEach((img) => {
     img.addEventListener("mouseenter", () => {
       const kickX = gsap.utils.clamp(-260, 260, deltaX * 9.5);
@@ -503,7 +475,7 @@ gsap.to(img, {
 
 // Bounce section headers (letter-by-letter). Re-triggers on scroll up/down.
       // Keep y: -240 for headers, as requested.
-      gsap.utils.toArray("main h2, section h2").forEach((h2) => {
+      gsap.utils.toArray("h1, h2").forEach((h2) => {
         // Avoid doubling on the hero headline if the site structure changes
         if (h2.closest(".hero")) return;
         klsBounceChars(h2, { yFrom: -240, scaleFrom: 0.92, duration: 1.6, stagger: 0.018 });
@@ -591,51 +563,39 @@ gsap.to(img, {
     ease: "power3"
   });
 
-  let iteration = 0;
+  let isInteracting = false;
+  let interactTimer = null;
 
-  const TRIGGER = ScrollTrigger.create({
+  const syncTo = (pos) => {
+    SCRUB.vars.position = pos;
+    SCRUB.invalidate().restart();
+  };
+
+  // Scroll drives the carousel while the section is in view (no pin, no layout gaps)
+  ScrollTrigger.create({
     trigger: wrap,
-    start: "top top",
-    end: () => "+=2000",
-    pin: wrap,
-    scrub: false,
+    start: "top 75%",
+    end: "bottom 25%",
+    scrub: true,
     onUpdate: (self) => {
-      const SCROLL = self.scroll();
-      if (SCROLL > self.end - 1) {
-        iteration += 1;
-        self.scroll(1);
-        self.update();
-      } else if (SCROLL < 1 && self.direction < 0) {
-        iteration -= 1;
-        self.scroll(self.end - 1);
-        self.update();
-      } else {
-        const NEW_POS = (iteration + self.progress) * LOOP_HEAD.duration();
-        SCRUB.vars.position = NEW_POS;
-        SCRUB.invalidate().restart();
-      }
+      if (isInteracting) return;
+      syncTo(self.progress * LOOP_HEAD.duration());
     }
   });
 
-  const SNAP = gsap.utils.snap(1 / BOXES.length);
-  const progressToScroll = (progress) =>
-    gsap.utils.clamp(1, TRIGGER.end - 1, gsap.utils.wrap(0, 1, progress) * TRIGGER.end);
-
-  const scrollToPosition = (position) => {
-    const SNAP_POS = SNAP(position);
-    const PROGRESS = (SNAP_POS - LOOP_HEAD.duration() * iteration) / LOOP_HEAD.duration();
-    const SCROLL = progressToScroll(PROGRESS);
-    if (PROGRESS >= 1 || PROGRESS < 0) {
-      iteration += Math.floor(PROGRESS);
-      TRIGGER.scroll(SCROLL);
-      TRIGGER.update();
-      return;
-    }
-    TRIGGER.scroll(SCROLL);
+  const STEP = 1 / BOXES.length;
+  const NEXT = () => {
+    isInteracting = true;
+    clearTimeout(interactTimer);
+    syncTo(SCRUB.vars.position + STEP);
+    interactTimer = setTimeout(() => (isInteracting = false), 900);
   };
-
-  const NEXT = () => scrollToPosition(SCRUB.vars.position - 1 / BOXES.length);
-  const PREV = () => scrollToPosition(SCRUB.vars.position + 1 / BOXES.length);
+  const PREV = () => {
+    isInteracting = true;
+    clearTimeout(interactTimer);
+    syncTo(SCRUB.vars.position - STEP);
+    interactTimer = setTimeout(() => (isInteracting = false), 900);
+  };
 
   const nextBtn = document.querySelector("#gallery .carousel-controls .next");
   const prevBtn = document.querySelector("#gallery .carousel-controls .prev");
@@ -645,16 +605,15 @@ gsap.to(img, {
   boxesRoot.addEventListener("click", (e) => {
     const box = e.target.closest(".box");
     if (!box) return;
-    let target = BOXES.indexOf(box);
-    let current = gsap.utils.wrap(0, BOXES.length, Math.floor(BOXES.length * SCRUB.vars.position));
-    let bump = target - current;
-    if (target > current && target - current > BOXES.length * 0.5) bump = (BOXES.length - bump) * -1;
-    if (current > target && current - target > BOXES.length * 0.5) bump = BOXES.length + bump;
-    scrollToPosition(SCRUB.vars.position + bump * (1 / BOXES.length));
+    isInteracting = true;
+    clearTimeout(interactTimer);
+    const target = BOXES.indexOf(box);
+    syncTo(target * STEP);
+    interactTimer = setTimeout(() => (isInteracting = false), 900);
   });
 
-  // Drag support when user stops on gallery
-  const proxy = document.createElement("div");
+  // Drag support inside the gallery
+  const proxy = document.createElement("div");const proxy = document.createElement("div");
   proxy.className = "drag-proxy";
   proxy.style.position = "absolute";
   proxy.style.visibility = "hidden";
