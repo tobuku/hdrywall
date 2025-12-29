@@ -89,13 +89,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  
-  
-  if (galleryItems.length) {
-        });
+  // Lightbox for gallery
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightbox-image");
+  const lightboxClose = document.querySelector(".lightbox-close");
+  const galleryItems = Array.from(document.querySelectorAll(".gallery-item"));
+
+  function openLightbox(src) {
+    if (!lightbox || !lightboxImage) return;
+    lightboxImage.src = src;
+    lightbox.classList.add("open");
   }
 
-    }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove("open");
+    if (lightboxImage) lightboxImage.src = "";
+  }
+
+  if (galleryItems.length) {
+    galleryItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const full = item.getAttribute("data-full");
+        if (full) openLightbox(full);
+      });
+    });
+  }
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener("click", closeLightbox);
+  }
 
   if (lightbox) {
     lightbox.addEventListener("click", (e) => {
@@ -105,7 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeLightbox();
+    }
   });
+});
 
 
   // ------------------------------
@@ -402,7 +430,7 @@ if (window.ScrollTrigger) {
 // Gallery hover inertia (free alternative to InertiaPlugin)
 // Tracks pointer velocity over the gallery and "kicks" images on hover, then springs back.
 // Force gallery images to full color (prevents haze)
-gsap.set("#gallery .gallery-carousel .box img", { opacity: 1, filter: "none" });
+gsap.set("#gallery .gallery-item img", { opacity: 1, filter: "none" });
 
 (function galleryHoverInertia() {
   const gallery = document.querySelector("#gallery");
@@ -419,7 +447,7 @@ gsap.set("#gallery .gallery-carousel .box img", { opacity: 1, filter: "none" });
 
   gallery.addEventListener("pointermove", update, { passive: true });
 
-  const imgs = gsap.utils.toArray("#gallery .gallery-carousel .box img");
+  const imgs = gsap.utils.toArray("#gallery .gallery-item img");
   imgs.forEach((img) => {
     img.addEventListener("mouseenter", () => {
       const kickX = gsap.utils.clamp(-260, 260, deltaX * 9.5);
@@ -475,7 +503,7 @@ gsap.to(img, {
 
 // Bounce section headers (letter-by-letter). Re-triggers on scroll up/down.
       // Keep y: -240 for headers, as requested.
-      gsap.utils.toArray("h1, h2").forEach((h2) => {
+      gsap.utils.toArray("main h2, section h2").forEach((h2) => {
         // Avoid doubling on the hero headline if the site structure changes
         if (h2.closest(".hero")) return;
         klsBounceChars(h2, { yFrom: -240, scaleFrom: 0.92, duration: 1.6, stagger: 0.018 });
@@ -507,109 +535,52 @@ gsap.to(img, {
 
 
 
-// Gallery carousel (scroll-driven + click controls)
-(function galleryCarousel() {
-  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof Draggable === "undefined") return;
 
-  const wrap = document.querySelector("#gallery .gallery-carousel-wrap");
-  const boxesRoot = document.querySelector("#gallery .gallery-carousel");
-  if (!wrap || !boxesRoot) return;
 
-  const BOXES = gsap.utils.toArray("#gallery .gallery-carousel .box");
-  if (!BOXES.length) return;
+// Contact form submit (Formspree)
+(function formspreeSubmit() {
+  const form = document.querySelector("form[action='https://formspree.io/f/xpqzybpp']");
+  if (!form) return;
 
-  gsap.registerPlugin(ScrollTrigger, Draggable);
+  const statusEl = form.querySelector(".form-status");
+  const btn = form.querySelector("button[type='submit'], input[type='submit']");
 
-  // Ensure tiles are visible even if GSAP fails later
-  gsap.set(BOXES, { display: "block", xPercent: -50, yPercent: -50 });
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const STAGGER = 0.06;
-  const DURATION = 1;
-
-  const LOOP = gsap.timeline({ paused: true, repeat: -1, ease: "none" });
-  const SHIFTS = [...BOXES, ...BOXES, ...BOXES];
-
-  SHIFTS.forEach((BOX, index) => {
-    const tl = gsap.timeline()
-      .set(BOX, { xPercent: 260, rotateY: -55, opacity: 0, scale: 0.6 })
-      .to(BOX, { opacity: 1, scale: 1, duration: 0.12 }, 0)
-      .to(BOX, { opacity: 0, scale: 0.6, duration: 0.12 }, 0.88)
-      .fromTo(BOX, { xPercent: 260 }, { xPercent: -360, duration: 1, ease: "power1.inOut", immediateRender: false }, 0)
-      .fromTo(BOX, { rotateY: -55 }, { rotateY: 55, duration: 1, ease: "power4.inOut", immediateRender: false }, 0)
-      .to(BOX, { z: 120, scale: 1.18, duration: 0.10, repeat: 1, yoyo: true }, 0.42)
-      .fromTo(BOX, { zIndex: 1 }, { zIndex: BOXES.length, duration: 0.5, repeat: 1, yoyo: true, ease: "none", immediateRender: false }, 0);
-
-    LOOP.add(tl, index * STAGGER);
-  });
-
-  const CYCLE_DURATION = STAGGER * BOXES.length;
-  const LOOP_HEAD = gsap.fromTo(
-    LOOP,
-    { totalTime: CYCLE_DURATION + DURATION * 0.5 },
-    { totalTime: `+=${CYCLE_DURATION}`, duration: 1, ease: "none", repeat: -1, paused: true }
-  );
-
-  const PLAYHEAD = { position: 0 };
-  const POSITION_WRAP = gsap.utils.wrap(0, LOOP_HEAD.duration());
-
-  const SCRUB = gsap.to(PLAYHEAD, {
-    position: 0,
-    onUpdate: () => LOOP_HEAD.totalTime(POSITION_WRAP(PLAYHEAD.position)),
-    paused: true,
-    duration: 0.22,
-    ease: "power3"
-  });
-
-  // Scroll drives the carousel while the section is in view
-  ScrollTrigger.create({
-    trigger: wrap,
-    start: "top 75%",
-    end: "bottom 25%",
-    scrub: true,
-    onUpdate: (self) => {
-      SCRUB.vars.position = self.progress * LOOP_HEAD.duration();
-      SCRUB.invalidate().restart();
+    if (statusEl) {
+      statusEl.classList.remove("is-ok", "is-bad");
+      statusEl.textContent = "Sending.";
     }
-  });
+    if (btn) btn.disabled = true;
 
-  const SNAP = gsap.utils.snap(1 / BOXES.length);
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
 
-  const scrollToProgress = (p) => {
-    const st = ScrollTrigger.getAll().find(t => t.trigger === wrap);
-    if (!st) return;
-    const clamped = Math.max(0, Math.min(1, p));
-    const y = st.start + (st.end - st.start) * clamped;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  const nextBtn = document.querySelector("#gallery .carousel-controls .next");
-  const prevBtn = document.querySelector("#gallery .carousel-controls .prev");
-
-  const getProgress = () => {
-    const st = ScrollTrigger.getAll().find(t => t.trigger === wrap);
-    return st ? st.progress : 0;
-  };
-
-  const NEXT = () => scrollToProgress(SNAP(getProgress() + 1 / BOXES.length));
-  const PREV = () => scrollToProgress(SNAP(getProgress() - 1 / BOXES.length));
-
-  if (nextBtn) nextBtn.addEventListener("click", NEXT);
-  if (prevBtn) prevBtn.addEventListener("click", PREV);
-
-  // Drag scrubs the playhead without fighting the page scroll
-  const proxy = document.createElement("div");
-  proxy.style.position = "absolute";
-  proxy.style.left = "-9999px";
-  document.body.appendChild(proxy);
-
-  Draggable.create(proxy, {
-    type: "x",
-    trigger: boxesRoot,
-    onPress() { this.startPos = PLAYHEAD.position; },
-    onDrag() {
-      PLAYHEAD.position = this.startPos + (this.startX - this.x) * 0.0065;
-      LOOP_HEAD.totalTime(POSITION_WRAP(PLAYHEAD.position));
+      if (res.ok) {
+        form.reset();
+        if (statusEl) {
+          statusEl.classList.add("is-ok");
+          statusEl.textContent = "Sent.";
+        }
+      } else {
+        if (statusEl) {
+          statusEl.classList.add("is-bad");
+          statusEl.textContent = "Failed. Try again.";
+        }
+      }
+    } catch (err) {
+      if (statusEl) {
+        statusEl.classList.add("is-bad");
+        statusEl.textContent = "Failed. Check connection.";
+      }
+    } finally {
+      if (btn) btn.disabled = false;
     }
   });
 })();
-;

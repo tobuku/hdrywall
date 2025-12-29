@@ -724,8 +724,8 @@ body {
 /* Gallery carousel (scroll-driven + click controls) */
 .gallery-carousel-wrap {
   position: relative;
-  height: 560px;
-  min-height: 560px;
+  height: 100vh;
+  min-height: 680px;
   overflow: hidden;
   border-radius: 18px;
   background: radial-gradient(1200px 600px at 50% 30%, rgba(2, 6, 23, 0.10), rgba(2, 6, 23, 0.02));
@@ -750,7 +750,7 @@ body {
   width: 22vmin;
   min-height: 220px;
   min-width: 220px;
-  display: block;
+  display: none;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 18px 50px rgba(2, 6, 23, 0.22);
@@ -768,7 +768,7 @@ body {
 .carousel-controls.controls {
   position: absolute;
   left: 50%;
-  bottom: 14px;
+  bottom: 22px;
   transform: translateX(-50%);
   display: flex;
   gap: 14px;
@@ -792,3 +792,42 @@ body {
   .gallery-carousel-wrap { min-height: 520px; }
   .gallery-carousel .box { min-height: 180px; min-width: 180px; }
 }
+
+
+/* Tiled gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.gallery-item {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(2, 6, 23, 0.16);
+  background: #0b1220;
+}
+.gallery-item img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+  filter: none;
+  will-change: transform, opacity;
+}
+@media (max-width: 1000px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 720px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item img { height: 200px; }
+}
+
+
+.form-status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(2, 6, 23, 0.75);
+}
+.form-status.is-ok { color: rgba(21, 128, 61, 0.95); }
+.form-status.is-bad { color: rgba(185, 28, 28, 0.95); }
