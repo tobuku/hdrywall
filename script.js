@@ -520,12 +520,11 @@ gsap.to(img, {
 
   gsap.registerPlugin(ScrollTrigger, Draggable);
 
-  gsap.set(BOXES, { yPercent: -50, xPercent: -50 });
-  gsap.set(BOXES, { display: "block" });
+  // Ensure tiles are visible even if GSAP fails later
+  gsap.set(BOXES, { display: "block", xPercent: -50, yPercent: -50 });
 
   const STAGGER = 0.06;
   const DURATION = 1;
-  const OFFSET = 0;
 
   const LOOP = gsap.timeline({ paused: true, repeat: -1, ease: "none" });
   const SHIFTS = [...BOXES, ...BOXES, ...BOXES];
@@ -544,11 +543,9 @@ gsap.to(img, {
   });
 
   const CYCLE_DURATION = STAGGER * BOXES.length;
-  const START_TIME = CYCLE_DURATION + DURATION * 0.5 + OFFSET;
-
   const LOOP_HEAD = gsap.fromTo(
     LOOP,
-    { totalTime: START_TIME },
+    { totalTime: CYCLE_DURATION + DURATION * 0.5 },
     { totalTime: `+=${CYCLE_DURATION}`, duration: 1, ease: "none", repeat: -1, paused: true }
   );
 
@@ -559,74 +556,60 @@ gsap.to(img, {
     position: 0,
     onUpdate: () => LOOP_HEAD.totalTime(POSITION_WRAP(PLAYHEAD.position)),
     paused: true,
-    duration: 0.25,
+    duration: 0.22,
     ease: "power3"
   });
 
-  let isInteracting = false;
-  let interactTimer = null;
-
-  const syncTo = (pos) => {
-    SCRUB.vars.position = pos;
-    SCRUB.invalidate().restart();
-  };
-
-  // Scroll drives the carousel while the section is in view (no pin, no layout gaps)
+  // Scroll drives the carousel while the section is in view
   ScrollTrigger.create({
     trigger: wrap,
     start: "top 75%",
     end: "bottom 25%",
     scrub: true,
     onUpdate: (self) => {
-      if (isInteracting) return;
-      syncTo(self.progress * LOOP_HEAD.duration());
+      SCRUB.vars.position = self.progress * LOOP_HEAD.duration();
+      SCRUB.invalidate().restart();
     }
   });
 
-  const STEP = 1 / BOXES.length;
-  const NEXT = () => {
-    isInteracting = true;
-    clearTimeout(interactTimer);
-    syncTo(SCRUB.vars.position + STEP);
-    interactTimer = setTimeout(() => (isInteracting = false), 900);
-  };
-  const PREV = () => {
-    isInteracting = true;
-    clearTimeout(interactTimer);
-    syncTo(SCRUB.vars.position - STEP);
-    interactTimer = setTimeout(() => (isInteracting = false), 900);
+  const SNAP = gsap.utils.snap(1 / BOXES.length);
+
+  const scrollToProgress = (p) => {
+    const st = ScrollTrigger.getAll().find(t => t.trigger === wrap);
+    if (!st) return;
+    const clamped = Math.max(0, Math.min(1, p));
+    const y = st.start + (st.end - st.start) * clamped;
+    window.scrollTo({ top: y, behavior: "smooth" });
   };
 
   const nextBtn = document.querySelector("#gallery .carousel-controls .next");
   const prevBtn = document.querySelector("#gallery .carousel-controls .prev");
+
+  const getProgress = () => {
+    const st = ScrollTrigger.getAll().find(t => t.trigger === wrap);
+    return st ? st.progress : 0;
+  };
+
+  const NEXT = () => scrollToProgress(SNAP(getProgress() + 1 / BOXES.length));
+  const PREV = () => scrollToProgress(SNAP(getProgress() - 1 / BOXES.length));
+
   if (nextBtn) nextBtn.addEventListener("click", NEXT);
   if (prevBtn) prevBtn.addEventListener("click", PREV);
 
-  boxesRoot.addEventListener("click", (e) => {
-    const box = e.target.closest(".box");
-    if (!box) return;
-    isInteracting = true;
-    clearTimeout(interactTimer);
-    const target = BOXES.indexOf(box);
-    syncTo(target * STEP);
-    interactTimer = setTimeout(() => (isInteracting = false), 900);
-  });
-
-  // Drag support inside the gallery
-  const proxy = document.createElement("div");const proxy = document.createElement("div");
-  proxy.className = "drag-proxy";
+  // Drag scrubs the playhead without fighting the page scroll
+  const proxy = document.createElement("div");
   proxy.style.position = "absolute";
-  proxy.style.visibility = "hidden";
-  wrap.appendChild(proxy);
+  proxy.style.left = "-9999px";
+  document.body.appendChild(proxy);
 
   Draggable.create(proxy, {
     type: "x",
     trigger: boxesRoot,
-    onPress() { this.startOffset = SCRUB.vars.position; },
+    onPress() { this.startPos = PLAYHEAD.position; },
     onDrag() {
-      SCRUB.vars.position = this.startOffset + (this.startX - this.x) * 0.0022;
-      SCRUB.invalidate().restart();
-    },
-    onDragEnd() { scrollToPosition(SCRUB.vars.position); }
+      PLAYHEAD.position = this.startPos + (this.startX - this.x) * 0.0065;
+      LOOP_HEAD.totalTime(POSITION_WRAP(PLAYHEAD.position));
+    }
   });
 })();
+;
