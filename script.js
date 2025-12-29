@@ -526,133 +526,148 @@ gsap.to(img, {
     } else {
       console.log("HDrywall GSAP: reduced motion enabled, skipping animations");
     }
-  } 
-
-    // Portfolio spotlight + lightbox
-    const HDRYWALL_GALLERY = [{"src": "assets/img/gallery/gallery-001.jpg", "title": "Drywall project photo 001"}, {"src": "assets/img/gallery/gallery-002.jpg", "title": "Drywall project photo 002"}, {"src": "assets/img/gallery/gallery-003.jpg", "title": "Drywall project photo 003"}, {"src": "assets/img/gallery/gallery-004.jpg", "title": "Drywall project photo 004"}, {"src": "assets/img/gallery/gallery-005.jpg", "title": "Drywall project photo 005"}, {"src": "assets/img/gallery/gallery-006.jpg", "title": "Drywall project photo 006"}, {"src": "assets/img/gallery/gallery-007.jpg", "title": "Drywall project photo 007"}, {"src": "assets/img/gallery/gallery-008.jpg", "title": "Drywall project photo 008"}, {"src": "assets/img/gallery/gallery-009.jpg", "title": "Drywall project photo 009"}, {"src": "assets/img/gallery/gallery-010.jpg", "title": "Drywall project photo 010"}, {"src": "assets/img/gallery/gallery-011.jpg", "title": "Drywall project photo 011"}, {"src": "assets/img/gallery/gallery-012.jpg", "title": "Drywall project photo 012"}, {"src": "assets/img/gallery/gallery-013.jpg", "title": "Drywall project photo 013"}, {"src": "assets/img/gallery/gallery-014.jpg", "title": "Drywall project photo 014"}, {"src": "assets/img/gallery/gallery-015.jpg", "title": "Drywall project photo 015"}, {"src": "assets/img/gallery/gallery-016.jpg", "title": "Drywall project photo 016"}, {"src": "assets/img/gallery/gallery-017.jpg", "title": "Drywall project photo 017"}, {"src": "assets/img/gallery/gallery-018.jpg", "title": "Drywall project photo 018"}, {"src": "assets/img/gallery/gallery-019.jpg", "title": "Drywall project photo 019"}, {"src": "assets/img/gallery/gallery-020.jpg", "title": "Drywall project photo 020"}, {"src": "assets/img/gallery/gallery-021.jpg", "title": "Drywall project photo 021"}, {"src": "assets/img/gallery/gallery-022.jpg", "title": "Drywall project photo 022"}, {"src": "assets/img/gallery/gallery-023.jpg", "title": "Drywall project photo 023"}, {"src": "assets/img/gallery/gallery-024.jpg", "title": "Drywall project photo 024"}, {"src": "assets/img/gallery/gallery-025.jpg", "title": "Drywall project photo 025"}, {"src": "assets/img/gallery/gallery-026.jpg", "title": "Drywall project photo 026"}, {"src": "assets/img/gallery/gallery-027.jpg", "title": "Drywall project photo 027"}, {"src": "assets/img/gallery/gallery-028.jpg", "title": "Drywall project photo 028"}, {"src": "assets/img/gallery/gallery-029.jpg", "title": "Drywall project photo 029"}, {"src": "assets/img/gallery/gallery-030.jpg", "title": "Drywall project photo 030"}, {"src": "assets/img/gallery/gallery-031.jpg", "title": "Drywall project photo 031"}, {"src": "assets/img/gallery/gallery-032.jpg", "title": "Drywall project photo 032"}, {"src": "assets/img/gallery/gallery-033.jpg", "title": "Drywall project photo 033"}, {"src": "assets/img/gallery/gallery-034.jpg", "title": "Drywall project photo 034"}, {"src": "assets/img/gallery/gallery-035.jpg", "title": "Drywall project photo 035"}, {"src": "assets/img/gallery/gallery-036.jpg", "title": "Drywall project photo 036"}, {"src": "assets/img/gallery/gallery-037.jpg", "title": "Drywall project photo 037"}, {"src": "assets/img/gallery/gallery-038.jpg", "title": "Drywall project photo 038"}, {"src": "assets/img/gallery/gallery-039.jpg", "title": "Drywall project photo 039"}, {"src": "assets/img/gallery/gallery-040.jpg", "title": "Drywall project photo 040"}, {"src": "assets/img/gallery/gallery-041.jpg", "title": "Drywall project photo 041"}, {"src": "assets/img/gallery/gallery-042.jpg", "title": "Drywall project photo 042"}, {"src": "assets/img/gallery/gallery-043.jpg", "title": "Drywall project photo 043"}, {"src": "assets/img/gallery/gallery-044.jpg", "title": "Drywall project photo 044"}, {"src": "assets/img/gallery/gallery-045.jpg", "title": "Drywall project photo 045"}, {"src": "assets/img/gallery/gallery-046.jpg", "title": "Drywall project photo 046"}, {"src": "assets/img/gallery/gallery-047.jpg", "title": "Drywall project photo 047"}, {"src": "assets/img/gallery/gallery-048.jpg", "title": "Drywall project photo 048"}, {"src": "assets/img/gallery/gallery-049.jpg", "title": "Drywall project photo 049"}, {"src": "assets/img/gallery/gallery-050.jpg", "title": "Drywall project photo 050"}, {"src": "assets/img/gallery/gallery-051.jpg", "title": "Drywall project photo 051"}];
-
-    (function portfolioSpotlightAndLightbox() {
-      const grid = document.querySelector('#gallery .gallery-grid');
-      if (!grid) return;
-
-      const tiles = Array.from(grid.querySelectorAll('.gallery-item'));
-      const lb = document.querySelector('#lightbox');
-      if (!lb) return;
-
-      const lbImg = lb.querySelector('.lightbox-img');
-      const lbCap = lb.querySelector('.lightbox-caption');
-      const btnClose = lb.querySelector('.lightbox-close');
-      const btnPrev = lb.querySelector('.lightbox-prev');
-      const btnNext = lb.querySelector('.lightbox-next');
-
-      let activeIndex = 0;
-
-      const setActiveTile = (tile) => {
-        tiles.forEach(t => t.classList.remove('is-active'));
-        if (tile) tile.classList.add('is-active');
-      };
-
-      tiles.forEach((tile) => {
-        const img = tile.querySelector('img');
-        const cap = tile.querySelector('.gallery-caption');
-        tile.addEventListener('pointerenter', () => {
-          grid.classList.add('is-hovering');
-          setActiveTile(tile);
-          if (cap) {
-            gsap.to(cap, { opacity: 1, y: 0, duration: 0.18, ease: 'power2.out' });
-          }
-          if (img) {
-            gsap.to(img, { scale: 1.03, duration: 0.22, ease: 'power2.out' });
-          }
-        });
-
-        tile.addEventListener('pointerleave', () => {
-          grid.classList.remove('is-hovering');
-          setActiveTile(null);
-          if (cap) {
-            gsap.to(cap, { opacity: 0, y: 10, duration: 0.18, ease: 'power2.in' });
-          }
-          if (img) {
-            gsap.to(img, { scale: 1, duration: 0.22, ease: 'power2.out' });
-          }
-        });
-      });
-
-      const render = (index) => {
-        const item = HDRYWALL_GALLERY[index];
-        if (!item) return;
-        activeIndex = index;
-        lbImg.src = item.src;
-        lbImg.alt = item.title;
-        lbCap.textContent = item.title;
-      };
-
-      const openAt = (index) => {
-        render(index);
-        lb.classList.add('is-open');
-        lb.setAttribute('aria-hidden', 'false');
-
-        gsap.killTweensOf(lb);
-        gsap.set(lb, { opacity: 0 });
-        gsap.to(lb, { opacity: 1, duration: 0.22, ease: 'power2.out' });
-
-        gsap.killTweensOf(lbImg);
-        gsap.fromTo(lbImg,
-          { opacity: 0, scale: 0.94, y: 16 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.32, ease: 'power3.out' }
-        );
-      };
-
-      const close = () => {
-        gsap.to(lb, {
-          opacity: 0,
-          duration: 0.18,
-          ease: 'power2.in',
-          onComplete: () => {
-            lb.classList.remove('is-open');
-            lb.setAttribute('aria-hidden', 'true');
-            lbImg.src = '';
-          }
-        });
-      };
-
-      const prev = () => openAt((activeIndex - 1 + HDRYWALL_GALLERY.length) % HDRYWALL_GALLERY.length);
-      const next = () => openAt((activeIndex + 1) % HDRYWALL_GALLERY.length);
-
-      tiles.forEach((tile) => {
-        tile.addEventListener('click', () => {
-          const full = tile.getAttribute('data-full') || '';
-          let idx = Number(tile.getAttribute('data-index'));
-          if (!Number.isFinite(idx)) idx = -1;
-          if (idx < 0) {
-            idx = HDRYWALL_GALLERY.findIndex(x => x.src === full);
-          }
-          if (idx < 0) idx = 0;
-          openAt(idx);
-        });
-      });
-
-      btnClose.addEventListener('click', close);
-      btnPrev.addEventListener('click', prev);
-      btnNext.addEventListener('click', next);
-
-      lb.addEventListener('click', (e) => {
-        if (e.target === lb) close();
-      });
-
-      window.addEventListener('keydown', (e) => {
-        if (!lb.classList.contains('is-open')) return;
-        if (e.key === 'Escape') close();
-        if (e.key === 'ArrowLeft') prev();
-        if (e.key === 'ArrowRight') next();
-      });
-    })();
-
-
-  catch (err) {
+  } catch (err) {
     // If anything goes wrong with GSAP, fail silently.
     // The site should remain fully functional.
     console.warn("HDrywall GSAP error:", err);
   }
 }
 
+
+
+// Gallery carousel (scroll-driven + click controls)
+(function galleryCarousel() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof Draggable === "undefined") return;
+
+  const wrap = document.querySelector("#gallery .gallery-carousel-wrap");
+  const boxesRoot = document.querySelector("#gallery .gallery-carousel");
+  if (!wrap || !boxesRoot) return;
+
+  const BOXES = gsap.utils.toArray("#gallery .gallery-carousel .box");
+  if (!BOXES.length) return;
+
+  gsap.registerPlugin(ScrollTrigger, Draggable);
+
+  gsap.set(BOXES, { yPercent: -50, xPercent: -50 });
+  gsap.set(BOXES, { display: "block" });
+
+  const STAGGER = 0.06;
+  const DURATION = 1;
+  const OFFSET = 0;
+
+  const LOOP = gsap.timeline({ paused: true, repeat: -1, ease: "none" });
+  const SHIFTS = [...BOXES, ...BOXES, ...BOXES];
+
+  SHIFTS.forEach((BOX, index) => {
+    const tl = gsap.timeline()
+      .set(BOX, { xPercent: 260, rotateY: -55, opacity: 0, scale: 0.6 })
+      .to(BOX, { opacity: 1, scale: 1, duration: 0.12 }, 0)
+      .to(BOX, { opacity: 0, scale: 0.6, duration: 0.12 }, 0.88)
+      .fromTo(BOX, { xPercent: 260 }, { xPercent: -360, duration: 1, ease: "power1.inOut", immediateRender: false }, 0)
+      .fromTo(BOX, { rotateY: -55 }, { rotateY: 55, duration: 1, ease: "power4.inOut", immediateRender: false }, 0)
+      .to(BOX, { z: 120, scale: 1.18, duration: 0.10, repeat: 1, yoyo: true }, 0.42)
+      .fromTo(BOX, { zIndex: 1 }, { zIndex: BOXES.length, duration: 0.5, repeat: 1, yoyo: true, ease: "none", immediateRender: false }, 0);
+
+    LOOP.add(tl, index * STAGGER);
+  });
+
+  const CYCLE_DURATION = STAGGER * BOXES.length;
+  const START_TIME = CYCLE_DURATION + DURATION * 0.5 + OFFSET;
+
+  const LOOP_HEAD = gsap.fromTo(
+    LOOP,
+    { totalTime: START_TIME },
+    { totalTime: `+=${CYCLE_DURATION}`, duration: 1, ease: "none", repeat: -1, paused: true }
+  );
+
+  const PLAYHEAD = { position: 0 };
+  const POSITION_WRAP = gsap.utils.wrap(0, LOOP_HEAD.duration());
+
+  const SCRUB = gsap.to(PLAYHEAD, {
+    position: 0,
+    onUpdate: () => LOOP_HEAD.totalTime(POSITION_WRAP(PLAYHEAD.position)),
+    paused: true,
+    duration: 0.25,
+    ease: "power3"
+  });
+
+  let iteration = 0;
+
+  const TRIGGER = ScrollTrigger.create({
+    trigger: wrap,
+    start: "top top",
+    end: () => "+=2000",
+    pin: wrap,
+    scrub: false,
+    onUpdate: (self) => {
+      const SCROLL = self.scroll();
+      if (SCROLL > self.end - 1) {
+        iteration += 1;
+        self.scroll(1);
+        self.update();
+      } else if (SCROLL < 1 && self.direction < 0) {
+        iteration -= 1;
+        self.scroll(self.end - 1);
+        self.update();
+      } else {
+        const NEW_POS = (iteration + self.progress) * LOOP_HEAD.duration();
+        SCRUB.vars.position = NEW_POS;
+        SCRUB.invalidate().restart();
+      }
+    }
+  });
+
+  const SNAP = gsap.utils.snap(1 / BOXES.length);
+  const progressToScroll = (progress) =>
+    gsap.utils.clamp(1, TRIGGER.end - 1, gsap.utils.wrap(0, 1, progress) * TRIGGER.end);
+
+  const scrollToPosition = (position) => {
+    const SNAP_POS = SNAP(position);
+    const PROGRESS = (SNAP_POS - LOOP_HEAD.duration() * iteration) / LOOP_HEAD.duration();
+    const SCROLL = progressToScroll(PROGRESS);
+    if (PROGRESS >= 1 || PROGRESS < 0) {
+      iteration += Math.floor(PROGRESS);
+      TRIGGER.scroll(SCROLL);
+      TRIGGER.update();
+      return;
+    }
+    TRIGGER.scroll(SCROLL);
+  };
+
+  const NEXT = () => scrollToPosition(SCRUB.vars.position - 1 / BOXES.length);
+  const PREV = () => scrollToPosition(SCRUB.vars.position + 1 / BOXES.length);
+
+  const nextBtn = document.querySelector("#gallery .carousel-controls .next");
+  const prevBtn = document.querySelector("#gallery .carousel-controls .prev");
+  if (nextBtn) nextBtn.addEventListener("click", NEXT);
+  if (prevBtn) prevBtn.addEventListener("click", PREV);
+
+  boxesRoot.addEventListener("click", (e) => {
+    const box = e.target.closest(".box");
+    if (!box) return;
+    let target = BOXES.indexOf(box);
+    let current = gsap.utils.wrap(0, BOXES.length, Math.floor(BOXES.length * SCRUB.vars.position));
+    let bump = target - current;
+    if (target > current && target - current > BOXES.length * 0.5) bump = (BOXES.length - bump) * -1;
+    if (current > target && current - target > BOXES.length * 0.5) bump = BOXES.length + bump;
+    scrollToPosition(SCRUB.vars.position + bump * (1 / BOXES.length));
+  });
+
+  // Drag support when user stops on gallery
+  const proxy = document.createElement("div");
+  proxy.className = "drag-proxy";
+  proxy.style.position = "absolute";
+  proxy.style.visibility = "hidden";
+  wrap.appendChild(proxy);
+
+  Draggable.create(proxy, {
+    type: "x",
+    trigger: boxesRoot,
+    onPress() { this.startOffset = SCRUB.vars.position; },
+    onDrag() {
+      SCRUB.vars.position = this.startOffset + (this.startX - this.x) * 0.0022;
+      SCRUB.invalidate().restart();
+    },
+    onDragEnd() { scrollToPosition(SCRUB.vars.position); }
+  });
+})();
