@@ -556,6 +556,19 @@ gsap.to(img, {
 
     try {
       const data = new FormData(form);
+      // Map the single "contact" field into either email or phone.
+      const contactField = form.querySelector("input[name='contact']");
+      const contactValue = contactField ? (contactField.value || "").trim() : "";
+      if (contactValue) {
+        if (contactValue.includes("@")) {
+          data.set("email", contactValue);
+          data.set("phone", "");
+        } else {
+          data.set("phone", contactValue);
+          data.set("email", "");
+        }
+      }
+
       const res = await fetch(form.action, {
         method: "POST",
         body: data,
