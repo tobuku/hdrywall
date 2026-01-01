@@ -1,36 +1,43 @@
-<!doctype html>
+Base layout and GSAP structure stay intact from your attached index.html. 
+
+```html
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-  <title>H Drywall LLC | Professional Drywall Contractor on Oahu</title>
-  <meta name="description" content="H Drywall LLC provides drywall installation, drywall repair, drywall finishing, texture matching, and drywall removal across Honolulu and Oahu. Licensed, bonded, insured. License C-35480. BBB A+ rating.">
+<!-- Primary SEO Meta -->
+<title>H Drywall, LLC | Honolulu Drywall Contractor | Repair, Installation and Texture Matching</title>
+<meta content="H Drywall, LLC is a licensed, bonded and insured drywall contractor serving Honolulu and all of Oahu. We provide drywall repair, installation, finishing, texturing, water damage restoration, acoustic ceilings, and remodeling support for residential and commercial projects across Hawai‘i." name="description"/>
+<meta content="Honolulu drywall contractor, Oahu drywall repair, drywall installation Honolulu, drywall finishing Oahu, texture matching Hawaii, Level 5 finish Honolulu, drywall water damage repair, drywall patching Oahu, acoustic ceiling installation Hawaii, home renovation drywall Honolulu, commercial drywall contractor Oahu, drywall company near me Honolulu" name="keywords"/>
+<link href="https://tobuku.github.io/hdrywall/" rel="canonical"/>
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="H Drywall LLC | Professional Drywall Contractor on Oahu">
-  <meta property="og:description" content="Residential and commercial drywall services across Oahu. Reliable scheduling. High quality workmanship. Clean job sites.">
-  <meta property="og:url" content="https://tobuku.github.io/hdrywall/">
-  <meta property="og:image" content="https://tobuku.github.io/hdrywall/assets/img/logo/hdrywall_.png">
+<!-- Open Graph -->
+<meta content="H Drywall, LLC - Professional Drywall Contractor in Honolulu, Hawaii" property="og:title"/>
+<meta content="High quality drywall installation, repair, finishing and texture matching serving homeowners and businesses across Oahu. Licensed, bonded and insured." property="og:description"/>
+<meta content="https://tobuku.github.io/hdrywall/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="https://tobuku.github.io/hdrywall/assets/img/logo/hdrywall_.png" property="og:image"/>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://tobuku.github.io/hdrywall/assets/img/logo/hdrywall_.png">
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="H Drywall, LLC | Honolulu Drywall Experts" name="twitter:title"/>
+<meta content="Residential and commercial drywall specialists serving all of Oahu. Smooth finishes, clean lines and dependable service." name="twitter:description"/>
+<meta content="https://tobuku.github.io/hdrywall/assets/img/logo/hdrywall_.png" name="twitter:image"/>
 
-  <link rel="icon" href="/hdrywall/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/hdrywall/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/hdrywall/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/hdrywall/apple-touch-icon.png">
-
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <script type="application/ld+json">
+<!-- Local Business Schema -->
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "H Drywall LLC",
+    "@type": "Contractor",
+    "name": "H Drywall, LLC",
     "url": "https://tobuku.github.io/hdrywall/",
-    "image": "https://tobuku.github.io/hdrywall/assets/img/logo/hdrywall_.png",
     "logo": "https://tobuku.github.io/hdrywall/assets/img/logo/hdrywall_.png",
+    "image": "https://tobuku.github.io/hdrywall/assets/img/logo/hdrywall_.png",
+    "telephone": "+1-808-384-9850",
+    "email": "hydrywall80@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1320 Kalani St Unit 301",
@@ -39,322 +46,396 @@
       "postalCode": "96817",
       "addressCountry": "US"
     },
-    "telephone": "+1-808-384-9850",
-    "email": "hydrywall80@gmail.com",
-    "areaServed": "Oahu, Hawaii",
-    "sameAs": [
-      "https://www.yelp.com/biz/h-drywall-honolulu-2",
-      "https://www.angi.com/companylist/us/hi/honolulu/h-drywall%2C-llc-reviews-8014971.htm",
-      "https://www.homeadvisor.com/rated.HDrywallLLC.49095448.html"
-    ],
-    "description": "H Drywall LLC provides drywall installation, drywall repair, drywall finishing, texture matching, and drywall removal across Honolulu and Oahu. Licensed, bonded, insured. License C-35480. BBB Accredited and A+ Rating."
+    "areaServed": {
+      "@type": "Place",
+      "name": "Oahu, Hawaii"
+    },
+    "description": "Licensed, bonded and insured drywall contractor providing installation, repair, finishing, texture matching, acoustic ceilings and water damage restoration throughout Oahu.",
+    "sameAs": ["https://www.yelp.com/biz/h-drywall-honolulu-2","https://www.angi.com/companylist/us/hi/honolulu/h-drywall%2C-llc-reviews-8014971.htm","https://www.homeadvisor.com/rated.HDrywallLLC.49095448.html"]
   }
   </script>
+
+<link rel="icon" href="/hdrywall/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/hdrywall/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/hdrywall/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/hdrywall/apple-touch-icon.png">
+
+<link href="style.css" rel="stylesheet"/>
+<style>
+    .kls-split { display: inline-block; }
+    .kls-split .kls-char { display: inline-block; will-change: transform, opacity; }
+  </style>
 </head>
+<body>
 
-<body id="top">
+<!-- Top navigation -->
+<header class="site-header">
+<div class="nav-bar">
+<div class="nav-inner">
+<div class="nav-brand">
+<span class="brand-text">H Drywall, LLC</span>
+</div>
+<nav class="nav-links">
+<a href="#projects">Projects</a>
+<a href="#services">Services</a>
+<a href="#why">Why Us</a>
+<a href="#about">About</a>
+<a href="#gallery">Gallery</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</div>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top">
-        <img src="assets/img/logo/hdrywall_.png" alt="H Drywall LLC logo">
-        <span>H Drywall LLC</span>
-      </a>
+<!-- Centered logo band under nav -->
+<div class="logo-band">
+<img alt="H Drywall, LLC logo" class="hero-logo" src="assets/img/logo/hdrywall_.png"/>
+</div>
+</header>
 
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#services">Services</a>
-        <a href="#why-us">Why Us</a>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#reviews">Reviews</a>
-        <a class="nav-cta" href="#contact">Book a Consult</a>
-      </nav>
+<main>
+
+<!-- Hero section -->
+<section class="hero" id="projects">
+<div class="hero-inner">
+<div class="hero-text">
+<h1>Professional Drywall Contractor on Oahu</h1>
+<p class="hero-subtitle">
+            Licensed. Bonded. Insured. Drywall specialists serving homes and businesses across Honolulu.
+            From small repairs to full remodels, H Drywall, LLC delivers clean lines, smooth finishes and job
+            sites that stay organized from start to finish.
+          </p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#contact">Book a Consult</a>
+<a class="btn btn-ghost" href="#gallery">View recent projects</a>
+</div>
+
+<div class="hero-trust">
+<p>License Number: C-35480. BBB Accredited and A+ Rating. Licensed, Bonded, and Insured.</p>
+</div>
+
+</div>
+<div class="hero-photos">
+<div class="hero-photo hero-photo-large">
+<img alt="Framing and drywall in progress on Oahu project" src="assets/img/services/drywall-near-me-8.jpg"/>
+</div>
+<div class="hero-photo-column">
+<div class="hero-photo">
+<img alt="Completed drywall ceiling in Honolulu" src="assets/img/services/drywall-near-me-7.jpg"/>
+</div>
+<div class="hero-photo">
+<img alt="H Drywall, LLC service truck and contact info" src="assets/img/services/drywall-near-me-10.jpg"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Services section -->
+<section class="section section-light" id="services">
+<div class="container">
+<h2>Drywall Services</h2>
+<p class="section-intro">
+          H Drywall, LLC provides complete drywall services for homeowners, property managers and contractors
+          across Oahu.
+        </p>
+
+<div class="services-grid">
+<article class="service-card">
+<h3>Drywall repair for holes and cracks</h3>
+<p>
+              Clean repairs for dents, door knob holes, nail pops and damaged corners so your walls look
+              like nothing ever happened.
+            </p>
+</article>
+
+<article class="service-card">
+<h3>Water damage and leak repairs</h3>
+<p>
+              Cut out wet or mold damaged drywall, replace insulation if needed and restore the area so it
+              is ready for paint and inspection.
+            </p>
+</article>
+
+<article class="service-card">
+<h3>Texture matching and Level 5 finish</h3>
+<p>
+              Match existing orange peel, knockdown or custom textures, or upgrade to smooth Level 5 finish
+              for high end lighting conditions.
+            </p>
+</article>
+
+<article class="service-card">
+<h3>Ceiling repair and patches</h3>
+<p>
+              Repair sagging, cracked or damaged ceilings, fix previous patch work and prepare the surface
+              for paint or new fixtures.
+            </p>
+</article>
+
+<article class="service-card">
+<h3>Painting prep and prime ready surfaces</h3>
+<p>
+              Surfaces sanded, cleaned and primed so your painter can move in quickly and achieve an even,
+              long lasting finish.
+            </p>
+</article>
+
+<article class="service-card">
+<h3>New drywall installation</h3>
+<p>
+              Straight, clean hanging and finishing for additions, remodels and light commercial spaces with
+              attention to framing corrections and details.
+            </p>
+</article>
+</div>
+
+<div class="services-extra">
+  <h3>Additional services</h3>
+  <ul>
+    <li>Patch and repair drywall for water damage, stress cracks, and more</li>
+    <li>Non asbestos popcorn ceiling removal</li>
+    <li>Interior renovations, install or remove non structural partition walls</li>
+    <li>Steel stud framing, non structural framing for commercial spaces</li>
+    <li>Drywall installation and finishing, all textures and smooth wall levels</li>
+    <li>Acoustic grid ceiling installation, fire rated and non fire rated options</li>
+    <li>Insulation installation for energy efficiency</li>
+  </ul>
+  <p class="services-note">Additional Services include free estimates, warranties, senior discounts 10 percent, and option to pay online.</p>
+</div>
+
+</div>
+</section>
+
+<!-- Why choose us -->
+<section class="section section-alt" id="why">
+<div class="container">
+<h2>Why homeowners on Oahu call H Drywall, LLC</h2>
+<p class="section-intro">
+          Clients call when they want drywall handled the right way the first time, with clear communication
+          and clean job sites.
+        </p>
+
+<div class="why-grid">
+<article class="why-card">
+<h3>Licensed, bonded and insured</h3>
+<p>Work is completed under proper coverage so your project is protected at every stage.</p>
+</article>
+
+<article class="why-card">
+<h3>Local Oahu crew</h3>
+<p>Decades of combined experience working in live in residential and commercial spaces.</p>
+</article>
+
+<article class="why-card">
+<h3>Trusted reputation</h3>
+<p>Known for punctual scheduling, daily clean up and respectful work inside your home.</p>
+</article>
+
+<article class="why-card">
+<h3>Clear estimates and invoicing</h3>
+<p>Straightforward written estimates so you know exactly what is included before work begins.</p>
+</article>
+</div>
+
+<div class="why-grid" style="margin-top: 1.25rem;">
+<article class="why-card">
+<h3>Unreliable contractors</h3>
+<p>Projects stall when communication stops. You get clear updates, timing, and progress pictures.</p>
+</article>
+
+<article class="why-card">
+<h3>Poor quality fixes</h3>
+<p>Quick patches fail after paint. You get repairs and replacements done right the first time.</p>
+</article>
+
+<article class="why-card">
+<h3>Disruption and dust</h3>
+<p>Protection, daily cleanup, and minimal disruption during live in renovations.</p>
+</article>
+
+<article class="why-card">
+<h3>Coordination with other trades</h3>
+<p>Drywall work aligned with electrical and plumbing changes to keep remodels moving.</p>
+</article>
+</div>
+
+</div>
+</section>
+
+<!-- About -->
+<section class="section section-light" id="about">
+  <div class="container">
+    <h2>About H Drywall, LLC</h2>
+    <p class="section-intro">
+      With 30 plus years of work experience behind the helm of H Drywall and over 10 successful years in business, we take pride in leadership in the drywall and painting industry.
+    </p>
+    <div class="why-grid">
+      <article class="why-card">
+        <h3>Our story</h3>
+        <p>We started in a 10x10 storage unit and grew into a 2,500 square foot warehouse at 1320 Kalani St Unit 301, Honolulu, HI 96817.</p>
+      </article>
+      <article class="why-card">
+        <h3>Reputation</h3>
+        <p>We earned an A+ rating with the Better Business Bureau and strong reviews on Yelp, Angi, and HomeAdvisor.</p>
+      </article>
+      <article class="why-card">
+        <h3>Specialty</h3>
+        <p>We focus on live in residential renovations, with careful protection, daily cleanup, and a friendly, accommodating approach.</p>
+      </article>
+      <article class="why-card">
+        <h3>Work standards</h3>
+        <p>High quality drywall installation, repair, finishing, and texture matching, with clear communication and progress updates.</p>
+      </article>
     </div>
-  </header>
+  </div>
+</section>
 
-  <section class="hero" id="home">
-    <div class="container hero-inner">
-      <div class="hero-copy">
-        <h1>Professional Drywall Contractor on Oahu</h1>
-        <p>Providing excellence for your residential and commercial projects.</p>
-        <p>Licensed. Bonded. Insured. BBB Accredited with A+ rating.</p>
+<!-- Gallery -->
+<section class="section section-light" id="gallery">
+<div class="container">
+<h2>Project gallery</h2>
+<p class="section-intro">
+          A quick look at recent drywall and renovation work completed around Honolulu and across Oahu.
+        </p>
+</div>
+<div class="gallery-grid"><div class="gallery-item" data-title="Project photo 1"><img alt="Project photo 1" loading="lazy" src="assets/img/gallery/gallery-001.jpg"/></div><div class="gallery-item" data-title="Project photo 2"><img alt="Project photo 2" loading="lazy" src="assets/img/gallery/gallery-002.jpg"/></div><div class="gallery-item" data-title="Project photo 3"><img alt="Project photo 3" loading="lazy" src="assets/img/gallery/gallery-003.jpg"/></div><div class="gallery-item" data-title="Project photo 4"><img alt="Project photo 4" loading="lazy" src="assets/img/gallery/gallery-004.jpg"/></div><div class="gallery-item" data-title="Project photo 5"><img alt="Project photo 5" loading="lazy" src="assets/img/gallery/gallery-005.jpg"/></div><div class="gallery-item" data-title="Project photo 6"><img alt="Project photo 6" loading="lazy" src="assets/img/gallery/gallery-006.jpg"/></div><div class="gallery-item" data-title="Project photo 7"><img alt="Project photo 7" loading="lazy" src="assets/img/gallery/gallery-007.jpg"/></div><div class="gallery-item" data-title="Project photo 8"><img alt="Project photo 8" loading="lazy" src="assets/img/gallery/gallery-008.jpg"/></div><div class="gallery-item" data-title="Project photo 9"><img alt="Project photo 9" loading="lazy" src="assets/img/gallery/gallery-009.jpg"/></div><div class="gallery-item" data-title="Project photo 10"><img alt="Project photo 10" loading="lazy" src="assets/img/gallery/gallery-010.jpg"/></div><div class="gallery-item" data-title="Project photo 11"><img alt="Project photo 11" loading="lazy" src="assets/img/gallery/gallery-011.jpg"/></div><div class="gallery-item" data-title="Project photo 12"><img alt="Project photo 12" loading="lazy" src="assets/img/gallery/gallery-012.jpg"/></div><div class="gallery-item" data-title="Project photo 13"><img alt="Project photo 13" loading="lazy" src="assets/img/gallery/gallery-013.jpg"/></div><div class="gallery-item" data-title="Project photo 14"><img alt="Project photo 14" loading="lazy" src="assets/img/gallery/gallery-014.jpg"/></div><div class="gallery-item" data-title="Project photo 15"><img alt="Project photo 15" loading="lazy" src="assets/img/gallery/gallery-015.jpg"/></div><div class="gallery-item" data-title="Project photo 16"><img alt="Project photo 16" loading="lazy" src="assets/img/gallery/gallery-016.jpg"/></div><div class="gallery-item" data-title="Project photo 17"><img alt="Project photo 17" loading="lazy" src="assets/img/gallery/gallery-017.jpg"/></div><div class="gallery-item" data-title="Project photo 18"><img alt="Project photo 18" loading="lazy" src="assets/img/gallery/gallery-018.jpg"/></div><div class="gallery-item" data-title="Project photo 19"><img alt="Project photo 19" loading="lazy" src="assets/img/gallery/gallery-019.jpg"/></div><div class="gallery-item" data-title="Project photo 20"><img alt="Project photo 20" loading="lazy" src="assets/img/gallery/gallery-020.jpg"/></div><div class="gallery-item" data-title="Project photo 21"><img alt="Project photo 21" loading="lazy" src="assets/img/gallery/gallery-021.jpg"/></div><div class="gallery-item" data-title="Project photo 22"><img alt="Project photo 22" loading="lazy" src="assets/img/gallery/gallery-022.jpg"/></div><div class="gallery-item" data-title="Project photo 23"><img alt="Project photo 23" loading="lazy" src="assets/img/gallery/gallery-023.jpg"/></div><div class="gallery-item" data-title="Project photo 24"><img alt="Project photo 24" loading="lazy" src="assets/img/gallery/gallery-024.jpg"/></div><div class="gallery-item" data-title="Project photo 25"><img alt="Project photo 25" loading="lazy" src="assets/img/gallery/gallery-025.jpg"/></div><div class="gallery-item" data-title="Project photo 26"><img alt="Project photo 26" loading="lazy" src="assets/img/gallery/gallery-026.jpg"/></div><div class="gallery-item" data-title="Project photo 27"><img alt="Project photo 27" loading="lazy" src="assets/img/gallery/gallery-027.jpg"/></div><div class="gallery-item" data-title="Project photo 28"><img alt="Project photo 28" loading="lazy" src="assets/img/gallery/gallery-028.jpg"/></div><div class="gallery-item" data-title="Project photo 29"><img alt="Project photo 29" loading="lazy" src="assets/img/gallery/gallery-029.jpg"/></div><div class="gallery-item" data-title="Project photo 30"><img alt="Project photo 30" loading="lazy" src="assets/img/gallery/gallery-030.jpg"/></div><div class="gallery-item" data-title="Project photo 31"><img alt="Project photo 31" loading="lazy" src="assets/img/gallery/gallery-031.jpg"/></div><div class="gallery-item" data-title="Project photo 32"><img alt="Project photo 32" loading="lazy" src="assets/img/gallery/gallery-032.jpg"/></div><div class="gallery-item" data-title="Project photo 33"><img alt="Project photo 33" loading="lazy" src="assets/img/gallery/gallery-033.jpg"/></div><div class="gallery-item" data-title="Project photo 34"><img alt="Project photo 34" loading="lazy" src="assets/img/gallery/gallery-034.jpg"/></div><div class="gallery-item" data-title="Project photo 35"><img alt="Project photo 35" loading="lazy" src="assets/img/gallery/gallery-035.jpg"/></div><div class="gallery-item" data-title="Project photo 36"><img alt="Project photo 36" loading="lazy" src="assets/img/gallery/gallery-036.jpg"/></div><div class="gallery-item" data-title="Project photo 37"><img alt="Project photo 37" loading="lazy" src="assets/img/gallery/gallery-037.jpg"/></div><div class="gallery-item" data-title="Project photo 38"><img alt="Project photo 38" loading="lazy" src="assets/img/gallery/gallery-038.jpg"/></div><div class="gallery-item" data-title="Project photo 39"><img alt="Project photo 39" loading="lazy" src="assets/img/gallery/gallery-039.jpg"/></div><div class="gallery-item" data-title="Project photo 40"><img alt="Project photo 40" loading="lazy" src="assets/img/gallery/gallery-040.jpg"/></div><div class="gallery-item" data-title="Project photo 41"><img alt="Project photo 41" loading="lazy" src="assets/img/gallery/gallery-041.jpg"/></div><div class="gallery-item" data-title="Project photo 42"><img alt="Project photo 42" loading="lazy" src="assets/img/gallery/gallery-042.jpg"/></div><div class="gallery-item" data-title="Project photo 43"><img alt="Project photo 43" loading="lazy" src="assets/img/gallery/gallery-043.jpg"/></div><div class="gallery-item" data-title="Project photo 44"><img alt="Project photo 44" loading="lazy" src="assets/img/gallery/gallery-044.jpg"/></div><div class="gallery-item" data-title="Project photo 45"><img alt="Project photo 45" loading="lazy" src="assets/img/gallery/gallery-045.jpg"/></div><div class="gallery-item" data-title="Project photo 46"><img alt="Project photo 46" loading="lazy" src="assets/img/gallery/gallery-046.jpg"/></div><div class="gallery-item" data-title="Project photo 47"><img alt="Project photo 47" loading="lazy" src="assets/img/gallery/gallery-047.jpg"/></div><div class="gallery-item" data-title="Project photo 48"><img alt="Project photo 48" loading="lazy" src="assets/img/gallery/gallery-048.jpg"/></div><div class="gallery-item" data-title="Project photo 49"><img alt="Project photo 49" loading="lazy" src="assets/img/gallery/gallery-049.jpg"/></div><div class="gallery-item" data-title="Project photo 50"><img alt="Project photo 50" loading="lazy" src="assets/img/gallery/gallery-050.jpg"/></div><div class="gallery-item" data-title="Project photo 51"><img alt="Project photo 51" loading="lazy" src="assets/img/gallery/gallery-051.jpg"/></div></div></section>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Book a Consult</a>
-          <a class="btn btn-secondary" href="#services">View Services</a>
-        </div>
+<!-- Lightbox -->
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<div class="lightbox-backdrop"></div>
+<div aria-modal="true" class="lightbox-content" role="dialog">
+<button aria-label="Close image" class="lightbox-close">×</button>
+<img alt="Expanded drywall project photo" id="lightbox-image" src=""/>
+</div>
+</div>
 
-        <div class="hero-trust">
-          <p>License Number: C-35480. BBB Accredited and A+ Rating. Licensed, Bonded, and Insured.</p>
-        </div>
-      </div>
+<!-- Reviews -->
+<section class="section section-alt" id="reviews">
+<div class="container">
+<h2>Client reviews</h2>
+<p class="section-intro">
+          See 5 star reviews and testimonials to learn why clients choose H Drywall, LLC for drywall projects across Oahu.
+        </p>
 
-      <div class="hero-media">
-        <img src="assets/img/hero/hero.jpg" alt="Drywall work in Honolulu and across Oahu">
-      </div>
-    </div>
-  </section>
+<div class="testimonial-grid">
+<article class="testimonial-card">
+<p class="quote">
+              A+++ for H Drywall. I highly highly recommend. Excellent wor...ess in Aloha. Best of Angie's List! Thank you and Aloha Harry!
+            </p>
+<p class="testimonial-name">Paul J.</p>
+</article>
+<article class="testimonial-card">
+<p class="quote">
+              Best contractor experience EVER. Price was reasonable, started ...and this is the best experience I have ever had unquestionably.
+            </p>
+<p class="testimonial-name">scott F.</p>
+</article>
+<article class="testimonial-card">
+<p class="quote">
+              Harry and his team were the BEST investment we made for our hom...he was always prompt to respond either via e-mail or text.
+            </p>
+<p class="testimonial-name">Yvonne L.</p>
+</article>
+<article class="testimonial-card">
+<p class="quote">
+              Harry and his team of dedicated professionals were amazing from...he week of disruption. They are the drywall choice in Honolulu!
+            </p>
+<p class="testimonial-name">Gary R.</p>
+</article>
+<article class="testimonial-card">
+<p class="quote">
+              A few words to describe Harry, personable, honest, trustworthy,...essed, and that is the highest compliment this family can give!
+            </p>
+<p class="testimonial-name">Elizabeth L.</p>
+</article>
+<article class="testimonial-card">
+<p class="quote">
+              Well. Harry is professional, prompt, helpful and his team ... in Hawaii. Would highly recommend and use again in the future.
+            </p>
+<p class="testimonial-name">Kailua Condos L.</p>
+</article>
+<article class="testimonial-card">
+<p class="quote">
+              Job was started on time and completed quickly. Working with them was wonderfully easy. Call backs ... when they started. Soooo happy with the finished installation.
+            </p>
+<p class="testimonial-name">Joy M.</p>
+</article>
+</div>
 
-  <section class="section" id="projects">
-    <div class="container">
-      <h2>Recent Projects</h2>
-      <p>Drywall installation, drywall repair, finishing, texture matching, and drywall removal across Honolulu and Oahu.</p>
-    </div>
-  </section>
+<div class="review-links">
+<p>See more reviews on your preferred platform:</p>
+<ul>
+<li><a href="https://www.yelp.com/biz/h-drywall-honolulu-2" rel="noopener noreferrer" target="_blank">Yelp</a></li>
+<li><a href="https://www.angi.com/companylist/us/hi/honolulu/h-drywall%2C-llc-reviews-8014971.htm" rel="noopener noreferrer" target="_blank">Angi</a></li>
+<li><a href="https://www.homeadvisor.com/rated.HDrywallLLC.49095448.html" rel="noopener noreferrer" target="_blank">HomeAdvisor</a></li>
+</ul>
+</div>
 
-  <section class="section section-alt" id="why-us">
-    <div class="container">
-      <h2>Hiring a Drywall Contractor in Hawaii Comes With Problems</h2>
+</div>
+</section>
 
-      <div class="grid-2">
-        <div>
-          <h3>Common issues</h3>
-          <ul>
-            <li>Unreliable or unresponsive contractors</li>
-            <li>Incomplete or poor quality work from previous providers</li>
-            <li>Difficulty finding reliable local contractors</li>
-            <li>Poor cleanup and disruption from other contractors</li>
-          </ul>
-          <p>You should not have to deal with any of this.</p>
-        </div>
+<!-- Contact -->
+<section class="section section-light" id="contact">
+<div class="container contact-layout contact-form-accent">
+<div class="contact-info">
+<h2>Book a Consult</h2>
+<p class="section-intro">
+            Share a few details about your project and we will follow up with timing and a clear estimate.
+          </p>
+<ul class="contact-details">
+<li><strong>Call us:</strong> <a href="tel:18083849850">808-384-9850</a></li>
+<li><strong>Email us:</strong> <a href="mailto:hydrywall80@gmail.com">hydrywall80@gmail.com</a></li>
+<li>
+<strong>Address:</strong>
+<address>1320 Kalani St Unit 301, Honolulu, HI 96817</address>
+</li>
+<li><strong>Service area:</strong> Oahu, Hawaii</li>
+<li><strong>License Number:</strong> C-35480</li>
+<li><strong>BBB:</strong> Accredited and A+ Rating</li>
+<li><strong>Coverage:</strong> Licensed, Bonded, and Insured</li>
+</ul>
+</div>
 
-        <div>
-          <h3>What you get with H Drywall</h3>
-          <ul>
-            <li>Reliability and responsiveness, on time arrivals, fast replies</li>
-            <li>High quality workmanship, repairs and replacements done right the first time</li>
-            <li>Comprehensive and expert solutions, tailored to your needs and budget</li>
-            <li>Clear and transparent invoicing, clear estimates from the outset</li>
-            <li>Efficient management and coordination with other contractors</li>
-            <li>Exceptional communication, updates and progress pictures</li>
-            <li>Professionalism and punctuality, courteous crews</li>
-            <li>Meticulous cleanup and minimal disruption, daily protection and cleanup</li>
-          </ul>
-        </div>
-      </div>
+<form action="https://formspree.io/f/xpqzybpp" class="contact-form" method="POST">
+<input name="_subject" type="hidden" value="HDrywall website request"/>
+<input name="email" type="hidden"/>
+<input name="phone" type="hidden"/>
 
-      <p class="section-cta">
-        <a class="btn btn-primary" href="#contact">Book a Consult</a>
-      </p>
-    </div>
-  </section>
+<label>
+            Name
+            <input name="name" placeholder="Your name" type="text"/>
+</label>
 
-  <section class="section" id="about">
-    <div class="container">
-      <h2>What Makes H Drywall the Best Drywall Contractor on Oahu</h2>
+<label>
+            Phone or email
+            <input name="contact" placeholder="Best number or email" required="required" type="text"/>
+</label>
 
-      <p>With 30 plus years of work experience behind the helm of H Drywall and over 10 successful years in business, we take pride in leadership in the drywall and painting industry.</p>
-      <p>We started from humble beginnings, working out of a 10x10 storage unit, and grew into a 2,500 square foot warehouse at 1320 Kalani St Unit 301, Honolulu, HI 96817.</p>
-      <p>Our commitment to excellence, integrity, and quality workmanship earned an A+ rating with the Better Business Bureau and top reviews on Angi, Yelp, and HomeAdvisor.</p>
-      <p>We specialize in residential live in renovations, treating your home with respect and care.</p>
-      <p>Our team is composed of skilled professionals dedicated to making damaged and broken things look new, and building lasting relationships with clients.</p>
-    </div>
-  </section>
+<label>
+            Project details
+            <textarea name="message" placeholder="Repairs, remodel, location and timing" required="required" rows="4"></textarea>
+</label>
 
-  <section class="section section-alt" id="services">
-    <div class="container">
-      <h2>Our Drywall Services</h2>
+<button class="btn btn-primary" type="submit">Book a Consult</button>
+<p aria-live="polite" class="form-status"></p>
+</form>
 
-      <div class="cards">
-        <article class="card">
-          <h3>Drywall Installation</h3>
-          <p>Whether new construction or renovation, seamless drywall installation for a polished look.</p>
-        </article>
+</div>
+</section>
 
-        <article class="card">
-          <h3>Drywall Repair</h3>
-          <p>From minor dents to major damage, repairs that restore integrity and appearance of walls and ceilings.</p>
-        </article>
+</main>
 
-        <article class="card">
-          <h3>Drywall Finishing</h3>
-          <p>Drywall taping, mudding, and sanding for a smooth surface ready for paint or wallpaper.</p>
-        </article>
+<footer class="footer">
+<div class="container footer-inner">
+<p>© <span id="year"></span> H Drywall, LLC - Honolulu, Hawaii</p>
+</div>
+</footer>
 
-        <article class="card">
-          <h3>Texture Matching</h3>
-          <p>Matching and blending textures on repairs or new installs for a consistent look.</p>
-        </article>
-
-        <article class="card">
-          <h3>Drywall Removal</h3>
-          <p>Efficient drywall removal for renovations or replacement, leaving a clean, ready space.</p>
-        </article>
-      </div>
-
-      <h3>Residential, Commercial, New Construction</h3>
-      <p>While we specialize in live in residential repairs, we provide a full range of services.</p>
-
-      <ul>
-        <li>Patch and repair drywall for water damage, stress cracks, and more</li>
-        <li>Non asbestos popcorn ceiling removal</li>
-        <li>Interior renovations, install or remove non structural partition walls</li>
-        <li>Water damage repair, comprehensive restoration solutions</li>
-        <li>Steel stud framing, non structural framing for commercial spaces</li>
-        <li>Drywall installation and finishing, all textures and smooth wall levels</li>
-        <li>Acoustic grid ceiling installation, fire rated and non fire rated options</li>
-        <li>Insulation installation for energy efficiency</li>
-        <li>Drywall hanging and finishing for a clean, consistent result</li>
-      </ul>
-
-      <p>We offer free estimates, senior discounts, and eco friendly options.</p>
-    </div>
-  </section>
-
-  <section class="section" id="values">
-    <div class="container">
-      <h2>Our Values</h2>
-
-      <div class="cards">
-        <article class="card">
-          <h3>Commitment to Quality</h3>
-          <p>Highest quality workmanship on every project, from addressing underlying issues to delivering flawless finishes.</p>
-        </article>
-
-        <article class="card">
-          <h3>Professionalism and Integrity</h3>
-          <p>Punctuality, clear communication, respect for your home, and care in every task.</p>
-        </article>
-
-        <article class="card">
-          <h3>Customer Satisfaction</h3>
-          <p>Personal service, flexible scheduling, thorough preparation, daily cleanup, and a smooth renovation process.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="gallery">
-    <div class="container">
-      <h2>Gallery</h2>
-      <p>Add project photos to assets and keep your current gallery layout.</p>
-    </div>
-  </section>
-
-  <section class="section" id="reviews">
-    <div class="container">
-      <h2>Client Testimonials</h2>
-      <p>See 5 star reviews and testimonials to learn why we are the number one choice for drywall projects on Oahu.</p>
-
-      <div class="testimonial-grid">
-        <article class="testimonial-card">
-          <p class="quote">A+++ for H Drywall. I highly highly recommend. Excellent work, very professional, very responsive, on time, excellent price. I called a few different vendors on Angi&#x27;s List. Harry answered his phone promptly and he was amenable to previewing the job right then and there. We scheduled a date for the work. He was on time for both the preview and the day of the job. Harry did excellent work. He was responsive on phone and texting. I would recommend him. Best of Angi&#x27;s List. Thank you and Aloha Harry.</p>
-          <p class="testimonial-name">Paul J.</p>
-        </article>
-
-        <article class="testimonial-card">
-          <p class="quote">Best contractor experience. Price was reasonable, started on time, finished on time, the project was done quickly, progress pictures were provided, and you would never know there was extra layers of soundproofing and quiet rock. All the finishes were reinstalled including cove lighting and automated blinds. Best experience.</p>
-          <p class="testimonial-name">scott F.</p>
-        </article>
-
-        <article class="testimonial-card">
-          <p class="quote">Harry and his team were the best investment we made for our home renovation. We worked with many other trades, but Harry was the most professional, detail oriented, and honest. Prompt communication from the start. Walk through scheduled fast. Quote delivered within a week. Quick replies by email and text.</p>
-          <p class="testimonial-name">Yvonne L.</p>
-        </article>
-
-        <article class="testimonial-card">
-          <p class="quote">Harry and his team of dedicated professionals were amazing from start to finish. Fast and reasonable quote. Tall ceilings required protection and custom scaffolding. Always on time and respectful of the home and occupants. They kept things livable during the week of disruption. The drywall choice in Honolulu.</p>
-          <p class="testimonial-name">Gary R.</p>
-        </article>
-
-        <article class="testimonial-card">
-          <p class="quote">Personable, honest, trustworthy, kind, and professional. Completed on time, fair price, and exactly what we asked for. Work was quick and neat. Keys were trusted. Condo transformed. Highest compliment from our family.</p>
-          <p class="testimonial-name">Elizabeth L.</p>
-        </article>
-
-        <article class="testimonial-card">
-          <p class="quote">Harry is professional, prompt, helpful and his team works hard and well. The paint job looks nice and the outcome is strong. Started and finished quickly. Communication was consistent and on time. Hard to find in Hawaii. Recommended.</p>
-          <p class="testimonial-name">Kailua Condos L.</p>
-        </article>
-
-        <article class="testimonial-card">
-          <p class="quote">Job started on time and completed quickly. Working with them was easy. Call backs were returned fast. Great attitude toward getting the job done right. Polite and friendly. Left the area cleaner than when they started. Happy with the finished installation.</p>
-          <p class="testimonial-name">Joy M.</p>
-        </article>
-      </div>
-
-      <div class="review-links">
-        <ul>
-          <li><a href="https://www.yelp.com/biz/h-drywall-honolulu-2" target="_blank" rel="noopener">Yelp</a></li>
-          <li><a href="https://www.angi.com/companylist/us/hi/honolulu/h-drywall%2C-llc-reviews-8014971.htm" target="_blank" rel="noopener">Angi</a></li>
-          <li><a href="https://www.homeadvisor.com/rated.HDrywallLLC.49095448.html" target="_blank" rel="noopener">HomeAdvisor</a></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="contact">
-    <div class="container">
-      <h2>Get In Touch</h2>
-
-      <div class="grid-2">
-        <div>
-          <h3>Call</h3>
-          <p><a href="tel:+18083849850">808-384-9850</a></p>
-
-          <h3>Email</h3>
-          <p><a href="mailto:hydrywall80@gmail.com">hydrywall80@gmail.com</a></p>
-
-          <h3>Address</h3>
-          <p>1320 Kalani St Unit 301, Honolulu, HI 96817</p>
-
-          <h3>License</h3>
-          <p>License Number: C-35480</p>
-
-          <h3>BBB</h3>
-          <p><a href="https://www.bbb.org/" target="_blank" rel="noopener">BBB Accredited and A+ Rating</a></p>
-
-          <h3>Coverage</h3>
-          <p>Licensed, Bonded, and Insured</p>
-
-          <h3>Business Hours</h3>
-          <ul>
-            <li>Monday: 7:00 AM - 6:00 PM</li>
-            <li>Tuesday: 7:00 AM - 6:00 PM</li>
-            <li>Wednesday: 7:00 AM - 6:00 PM</li>
-            <li>Thursday: 7:00 AM - 6:00 PM</li>
-            <li>Friday: 7:00 AM - 6:00 PM</li>
-          </ul>
-
-          <h3>Additional Services</h3>
-          <p>Free estimates, warranties, senior discounts 10 percent, and option to pay online.</p>
-        </div>
-
-        <div>
-          <h3>Book Your Consult</h3>
-
-          <form class="contact-form" method="post" action="PASTE_YOUR_FORMSPREE_ENDPOINT_HERE">
-            <label>
-              Name
-              <input type="text" name="name" required>
-            </label>
-
-            <label>
-              Email
-              <input type="email" name="email" required>
-            </label>
-
-            <label>
-              Message
-              <textarea name="message" rows="6" required></textarea>
-            </label>
-
-            <button type="submit">Send Message</button>
-          </form>
-
-          <p>We will get back to you soon.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2023 by H Drywall LLC. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script defer src="./script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+<script defer="defer" src="./script.js"></script>
 </body>
 </html>
+```
