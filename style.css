@@ -145,6 +145,44 @@ body {
   height: auto;
 }
 
+/* Call Now fixed button */
+
+.call-now-btn {
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  z-index: 300;
+  background: #dc2626;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.30);
+  line-height: 1.2;
+  transition: background 0.15s;
+}
+
+.call-now-btn:hover {
+  background: #b91c1c;
+}
+
+.call-now-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.call-now-number {
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 /* Call strip */
 
 .call-strip {
