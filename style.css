@@ -145,6 +145,27 @@ body {
   height: auto;
 }
 
+/* Call strip */
+
+.call-strip {
+  background: #ffffff;
+  text-align: center;
+  padding: 0.55rem 0 0.6rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.call-strip-link {
+  color: #dc2626;
+  font-size: 1.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.call-strip-link:hover {
+  color: #b91c1c;
+}
+
 /* Hero */
 
 .hero {
