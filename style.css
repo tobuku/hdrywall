@@ -1211,12 +1211,13 @@ body {
     transition: none;
   }
 
-  /* Suppress the CSS hover trigger on touch devices */
+  /* Suppress CSS hover trigger on touch devices (specificity 0,3,0) */
   .nav-dropdown:hover .nav-dropdown-menu {
     display: none;
   }
 
-  .nav-dropdown-menu.is-open {
+  /* JS-toggled open — same specificity 0,3,0 but later in source, so wins */
+  .nav-dropdown .nav-dropdown-menu.is-open {
     display: grid;
   }
 
