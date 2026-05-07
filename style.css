@@ -222,8 +222,11 @@ body {
 }
 
 .hero-text h1 {
-  font-size: clamp(2.1rem, 2.4vw + 1.4rem, 2.8rem);
+  font-size: clamp(1.5rem, 2.2vw + 0.8rem, 2.4rem);
   margin: 0 0 0.75rem;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 .hero-subtitle {
@@ -660,6 +663,60 @@ body {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
+}
+
+/* Service Areas Grid */
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.areas-group h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.areas-group h3:first-child {
+  margin-top: 0;
+}
+
+.areas-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.areas-group ul li {
+  margin-bottom: 0.35rem;
+}
+
+.areas-group ul li a {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.areas-group ul li a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .areas-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .areas-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Footer */
