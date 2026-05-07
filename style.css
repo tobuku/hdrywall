@@ -1191,29 +1191,33 @@ body {
     justify-content: space-between;
   }
 
+  /* On mobile the menu is in-flow (position:static), so use display:none
+     to take zero space when closed — visibility:hidden still occupies layout */
   .nav-dropdown-menu {
     position: static;
+    display: none;
     min-width: 0;
     width: 100%;
     grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
     border: none;
     border-radius: 0;
     box-shadow: none;
     background: transparent;
-    padding: 0.25rem 0 0.5rem;
-    transition: opacity 0.15s, visibility 0.15s;
-  }
-
-  .nav-dropdown:hover .nav-dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .nav-dropdown-menu.is-open {
+    padding: 0.4rem 0 0.6rem;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transition: none;
+  }
+
+  /* Suppress the CSS hover trigger on touch devices */
+  .nav-dropdown:hover .nav-dropdown-menu {
+    display: none;
+  }
+
+  .nav-dropdown-menu.is-open {
+    display: grid;
   }
 
   .nav-dropdown-heading {
@@ -1222,5 +1226,7 @@ body {
 
   .nav-dropdown-col a {
     color: #e5e7eb;
+    font-size: 0.82rem;
+    padding: 0.15rem 0;
   }
 }
