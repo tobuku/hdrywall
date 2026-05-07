@@ -537,6 +537,35 @@ gsap.to(img, {
 
 
 
+// Service Areas nav dropdown
+(function navDropdown() {
+  const toggle = document.querySelector('.nav-dropdown-toggle');
+  const menu = document.querySelector('.nav-dropdown-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !expanded);
+    menu.classList.toggle('is-open', !expanded);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!toggle.closest('.nav-dropdown').contains(e.target)) {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('is-open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('is-open');
+    }
+  });
+})();
+
+
 // Contact form submit (Formspree)
 (function formspreeSubmit() {
   const form = document.querySelector("form[action='https://formspree.io/f/xpqzybpp']");

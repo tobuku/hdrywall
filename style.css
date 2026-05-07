@@ -1088,3 +1088,139 @@ body {
 }
 .form-status.is-ok { color: rgba(21, 128, 61, 0.95); }
 .form-status.is-bad { color: rgba(185, 28, 28, 0.95); }
+
+
+/* Service Areas nav dropdown */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  background: none;
+  border: none;
+  color: #e5e7eb;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown:hover .nav-dropdown-toggle {
+  border-bottom-color: #22c55e;
+}
+
+.nav-dropdown-caret {
+  font-size: 0.72rem;
+  transition: transform 0.15s;
+  display: inline-block;
+}
+
+.nav-dropdown-toggle[aria-expanded="true"] .nav-dropdown-caret {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  min-width: 480px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 1.5rem;
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav-dropdown-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #64748b;
+  margin: 0.75rem 0 0.4rem;
+}
+
+.nav-dropdown-col .nav-dropdown-heading:first-child {
+  margin-top: 0;
+}
+
+.nav-dropdown-col a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.88rem;
+  padding: 0.2rem 0;
+  border-bottom: none;
+  transition: color 0.12s;
+}
+
+.nav-dropdown-col a:hover {
+  color: #22c55e;
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    min-width: 0;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    padding: 0.25rem 0 0.5rem;
+    transition: opacity 0.15s, visibility 0.15s;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .nav-dropdown-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-dropdown-heading {
+    color: #94a3b8;
+  }
+
+  .nav-dropdown-col a {
+    color: #e5e7eb;
+  }
+}
