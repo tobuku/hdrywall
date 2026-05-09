@@ -1146,7 +1146,6 @@ body {
   transition: opacity 0.15s, visibility 0.15s;
 }
 
-.nav-dropdown:hover .nav-dropdown-menu,
 .nav-dropdown-menu.is-open {
   opacity: 1;
   visibility: visible;
@@ -1211,10 +1210,6 @@ body {
     transition: none;
   }
 
-  /* Suppress CSS hover trigger on touch devices (specificity 0,3,0) */
-  .nav-dropdown:hover .nav-dropdown-menu {
-    display: none;
-  }
 
   /* JS-toggled open — same specificity 0,3,0 but later in source, so wins */
   .nav-dropdown .nav-dropdown-menu.is-open {
