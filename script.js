@@ -568,7 +568,7 @@ gsap.to(img, {
 
 // Contact form submit (Formspree)
 (function formspreeSubmit() {
-  const form = document.querySelector("form[action='https://formspree.io/f/xpqzybpp']");
+  const form = document.querySelector("form[action='https://formspree.io/f/mjgqzrql']");
   if (!form) return;
 
   const statusEl = form.querySelector(".form-status");
